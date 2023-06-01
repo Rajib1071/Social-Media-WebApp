@@ -1,0 +1,25 @@
+# Ignore node_modules folder
+node_modules/
+
+# Ignore build or dist folders
+build/
+dist/
+
+# Ignore environment variables or sensitive information
+.env
+
+# Ignore log files
+*.log
+
+# Ignore macOS system files
+.DS_Store
+
+# Ignore editor-specific configuration folders
+.vscode/
+.idea/
+
+# Ignore Vim swap files
+*.swp
+
+# Ignore ESLint cache files
+.eslintcache

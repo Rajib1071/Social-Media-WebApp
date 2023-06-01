@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/userRoutes');
 const postRoutes = require('./routes/postRoutes');
-
+const morgan = require('morgan');
 
 
 
@@ -10,7 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Connect to the database
-mongoose.connect('mongodb://localhost/social-media', {
+mongoose.connect('mongodb+srv://rajibmondal20192020:OKaOebXf85mdSrPm@my-social-media-app-clu.9ei26xp.mongodb.net/?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -24,6 +24,8 @@ mongoose.connect('mongodb://localhost/social-media', {
 // Add middleware for parsing JSON and handling URL-encoded data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(morgan('common')); // Logging middleware
 
 // Use the user routes
 app.use('/api/users', userRoutes);
