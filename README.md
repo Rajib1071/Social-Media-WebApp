@@ -46,6 +46,8 @@ This is a social media web application built using React, Node.js, WebSocket, an
 
 In the future, the following enhancements and technologies can be considered to further improve the social media web application:
 
+- **Authentication with JWT**: Implementing authentication using JSON Web Tokens (JWT) can enhance security and user authentication. JWTs can be used to generate and validate tokens for user authentication, allowing for stateless and secure authentication between the client and server.
+
 - **Kafka**: Implementing Apache Kafka as a distributed streaming platform can provide scalable and real-time data processing capabilities. It can be used for event-driven architecture, data streaming, and message queuing.
 
 - **ELK Stack**: Integrate the ELK (Elasticsearch, Logstash, Kibana) Stack for advanced log analysis, monitoring, and data visualization. Elasticsearch can be used for storing and searching log data, Logstash for log collection and processing, and Kibana for visualizing and analyzing log data.
@@ -54,7 +56,9 @@ In the future, the following enhancements and technologies can be considered to 
 
 - **System Design Tools**: Consider using system design tools like Lucidchart or Draw.io to create detailed system architecture diagrams, component interactions, and data flow diagrams. This will help in visualizing and documenting the overall system design.
 
-These enhancements and technologies can add additional value to the application by improving scalability, real-time processing, log analysis, caching, and overall system performance.
+These enhancements and technologies can add additional value to the application by improving authentication security, scalability, real-time processing, log analysis, caching, and overall system performance.
+
+
 
 
 ## Contribution
