@@ -4,6 +4,8 @@ const userRoutes = require('./routes/userRoutes');
 const postRoutes = require('./routes/postRoutes');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
+const WebSocket = require('ws');
+const wss = require('./websocket');
 // Load environment variables from .env file
 dotenv.config();
 
@@ -40,6 +42,13 @@ app.use('/api/users', userRoutes);
 // Use the post routes
 app.use('/api/posts', postRoutes);
 
+// WebSocket upgrade endpoint
+app.get('/ws', (req, res) => {
+  res.send('WebSocket connection established');
+});
+
+// Attach the WebSocket server to the HTTP server
+wss.attach(server);
 
 // Start the server
 app.listen(PORT, () => {
