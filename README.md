@@ -25,14 +25,38 @@ This is a social media web application built using React, Node.js, WebSocket, an
 
 ## Getting Started
 
-### Prerequisites
+### Setup and Installation
 
-- Node.js and npm installed on your machine
-- MongoDB Atlas account (or a local MongoDB installation)
-
-### Installation
-
-1. Clone the repository:
+1. Clone the repository.
 
    ```bash
    git clone <https://github.com/Rajib1071/Social-Media-WebApp.git>
+2. Install dependencies using `npm install`.
+3. Set up the MongoDB database and provide the connection string in the configuration file.
+4. Start the backend server using `npm start`.
+5. Navigate to the frontend directory and start the React development server using `npm start`.
+6. Access the web application in your browser at `http://localhost:3000`.
+
+### Folder Structure
+
+- `backend`: Contains the backend server code.
+- `frontend`: Contains the frontend React code.
+
+## Future Work
+
+In the future, the following enhancements and technologies can be considered to further improve the social media web application:
+
+- **Kafka**: Implementing Apache Kafka as a distributed streaming platform can provide scalable and real-time data processing capabilities. It can be used for event-driven architecture, data streaming, and message queuing.
+
+- **ELK Stack**: Integrate the ELK (Elasticsearch, Logstash, Kibana) Stack for advanced log analysis, monitoring, and data visualization. Elasticsearch can be used for storing and searching log data, Logstash for log collection and processing, and Kibana for visualizing and analyzing log data.
+
+- **Redis**: Incorporate Redis as a distributed caching solution to improve performance and reduce database load. Redis can be used for caching frequently accessed data, session management, and content distribution.
+
+- **System Design Tools**: Consider using system design tools like Lucidchart or Draw.io to create detailed system architecture diagrams, component interactions, and data flow diagrams. This will help in visualizing and documenting the overall system design.
+
+These enhancements and technologies can add additional value to the application by improving scalability, real-time processing, log analysis, caching, and overall system performance.
+
+
+## Contribution
+
+Contributions to the project are welcome. Feel free to open issues and submit pull requests.
