@@ -35,4 +35,4 @@ This is a social media web application built using React, Node.js, WebSocket, an
 1. Clone the repository:
 
    ```bash
-   git clone <repository-url>
+   git clone <https://github.com/Rajib1071/Social-Media-WebApp.git>
