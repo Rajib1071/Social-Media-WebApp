@@ -74,7 +74,7 @@ async function createPost(req, res) {
     // });
 
     // Create a new post using the Post model
-    const newPost = new Post({ title, content, user: userId, image: { data: imageBuffer, contentType: req.file.mimetype } });
+    const newPost = new Post({ title, content, author: userId, image: { data: imageBuffer, contentType: req.file.mimetype } });
 
     // Save the post to the database
     const savedPost = await newPost.save();
@@ -111,7 +111,7 @@ async function getAllPosts(req, res) {
 
 
 
-    
+
     // Return the posts as the response
     res.json(posts);
   } catch (error) {
@@ -199,10 +199,40 @@ async function editPost(req, res) {
 }
 
 
+// Controller function for getting Followed Posts
+async function getFollowedPosts(req, res) {
+  const { userId } = req.body;
+
+  try {
+    // Check if the current user exists
+    const currentUser = await User.findById(userId);
+    if (!currentUser) {
+      return res.status(404).json({ error: 'Current user not found' });
+    }
+
+    // Retrieve the IDs of the users being followed by the current user
+    const followedUserIds = currentUser.following;
+    console.log(followedUserIds)
+    // Retrieve the posts created by the followed users
+    const followedPosts = await Post.find({ author: { $in: followedUserIds } });
+    // const count = await Post.countDocuments({ author: { $in: followedUserIds } });
+
+
+    // console.log('Total Count:', count);
+
+    res.status(200).json(followedPosts);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to retrieve followed posts' });
+  }
+}
+
+
+
 // Export the controller functions
 module.exports = {
   deletePost,
   createPost,
   getAllPosts,
   editPost,
+  getFollowedPosts,
 };

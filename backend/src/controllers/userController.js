@@ -49,8 +49,51 @@ async function loginUser(req, res) {
   }
 }
 
+
+
+// Controller function for follow a user
+async function followUser(req, res) {
+  const { userId, followId } = req.body;
+
+  try {
+    // Check if the current user exists
+    const currentUser = await User.findById(userId);
+    if (!currentUser) {
+      return res.status(404).json({ error: 'Current user not found' });
+    }
+
+    // Check if the user to follow exists
+    const userToFollow = await User.findById(followId);
+    if (!userToFollow) {
+      return res.status(404).json({ error: 'User to follow not found' });
+    }
+
+    // Check if the current user is already following the user to follow
+    const isFollowing = currentUser.following.includes(followId);
+
+    if (isFollowing) {
+      // Unfollow the user by removing their ID from the following array
+      currentUser.following.pull(followId);
+      await currentUser.save();
+
+      return res.status(200).json({ message: 'User unfollowed successfully' });
+    } else {
+      // Follow the user by adding their ID to the following array
+      currentUser.following.push(followId);
+      await currentUser.save();
+
+      return res.status(200).json({ message: 'User followed successfully' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to follow/unfollow user' });
+  }
+}
+
+
+
 // Export the controller functions
 module.exports = {
   registerUser,
   loginUser,
+  followUser,
 };

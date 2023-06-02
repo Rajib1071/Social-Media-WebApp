@@ -19,5 +19,8 @@ router.get('/', postController.getAllPosts);
 // Route for editing a post
 router.put('/', postController.editPost);
 
+// Route to get the posts of the users being followed
+router.get('/followed', postController.getFollowedPosts);
+
 // Export the router
 module.exports = router;

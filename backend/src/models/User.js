@@ -12,6 +12,10 @@ const userSchema = new mongoose.Schema({
       ref: 'Post',
     },
   ],
+  following: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  }],
 });
 
 // Add a pre-save hook to hash the password before saving
