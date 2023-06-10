@@ -5,8 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { io } from 'socket.io-client';
 
-const socket = io('http://localhost:3000'); // Replace with your WebSocket server URL
-
+const socket = io('http://localhost:3001');
+console.log('index');
+ // Replace with your WebSocket server URL
+console.log('index')
 ReactDOM.render(
   <React.StrictMode>
     <App socket={socket} />

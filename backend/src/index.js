@@ -1,22 +1,32 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const http = require('http');
 const userRoutes = require('./routes/userRoutes');
 const postRoutes = require('./routes/postRoutes');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
-const WebSocket = require('ws');
-const wss = require('./websocket');
+const cors = require('cors');
+const { startWebSocketServer } = require('./websocket/websocket');
+
 // Load environment variables from .env file
 dotenv.config();
 
-
-
 const app = express();
-const PORT = process.env.PORT || 3000;
+const server = http.createServer(app);
+const PORT = process.env.PORT || 3001;
 
+// Enable CORS
+app.use(cors());
+
+// // Allow requests from the client-side application
+// app.use((req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//   next();
+// });
 
 // Connect to the database
-console.log(process.env.MONGODB_URL)
 mongoose
   .connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
@@ -29,28 +39,18 @@ mongoose
     console.error('Failed to connect to the database:', error);
   });
 
-
-// Add middleware for parsing JSON and handling URL-encoded data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(morgan('common')); // Logging middleware
 
-// Use the user routes
 app.use('/api/users', userRoutes);
-
-// Use the post routes
 app.use('/api/posts', postRoutes);
 
-// WebSocket upgrade endpoint
-app.get('/ws', (req, res) => {
-  res.send('WebSocket connection established');
-});
-
-// Attach the WebSocket server to the HTTP server
-wss.attach(server);
+// Start the WebSocket server
+startWebSocketServer(server);
 
 // Start the server
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
