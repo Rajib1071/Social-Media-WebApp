@@ -1,15 +1,18 @@
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Login from './components/Authentication/Login';
+import Register from './components/Authentication/Register';
+// Import other components as needed
 
-import './App.css';
-import Chat from './components/chat Component/chat';
-console.log('App')
-const App = ({ socket }) => {
-  console.log('App - socket:', socket); // Add this line for debugging
-
+const App = () => {
   return (
-    <div className="app">
-      <h1>My Social Media App</h1>
-      <Chat socket={socket} />
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        {/* Add more routes for other components */}
+      </Switch>
+    </Router>
   );
 };
 
