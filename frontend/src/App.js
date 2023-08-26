@@ -1,17 +1,20 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Login from './components/Authentication/Login';
-import Register from './components/Authentication/Register';
-// Import other components as needed
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Login from './components/Auth/Login';
+import Register from './components/Auth/Register';
+import Home from './components/Home';
 
 const App = () => {
   return (
     <Router>
-      <Switch>
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
+      <Routes>
+        {/* Placeholder routes until you create the Login and Register components */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/" element={<Home />} />
+       
         {/* Add more routes for other components */}
-      </Switch>
+      </Routes>
     </Router>
   );
 };
