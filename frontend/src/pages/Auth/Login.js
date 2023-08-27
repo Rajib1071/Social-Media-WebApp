@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../styles/authStyles.css'; // Import the CSS file
+import './loginStyles.css'; // Import the CSS file
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -7,27 +7,31 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // You can perform authentication here, e.g., send the data to the backend
+    // You can send the login data to the backend for authentication
     console.log('Login clicked:', email, password);
   };
 
   return (
-    <div>
+    <div className="login-form">
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
         <input
           type="email"
+          className="login-input"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
+          className="login-input"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Login</button>
+        <button type="submit" className="login-button">
+          Login
+        </button>
       </form>
     </div>
   );

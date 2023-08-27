@@ -1,5 +1,5 @@
-/* authStyles.css */
-.form-container {
+/* loginStyles.css */
+.login-form {
     max-width: 300px;
     margin: auto;
     padding: 20px;
@@ -8,7 +8,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
-  .form-input {
+  .login-input {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -16,7 +16,7 @@
     border-radius: 5px;
   }
   
-  .form-button {
+  .login-button {
     background-color: #007bff;
     color: white;
     padding: 10px 15px;
