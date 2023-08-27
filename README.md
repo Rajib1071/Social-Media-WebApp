@@ -48,14 +48,6 @@ In the future, the following enhancements and technologies can be considered to 
 
 - **Authentication with JWT**: Implementing authentication using JSON Web Tokens (JWT) can enhance security and user authentication. JWTs can be used to generate and validate tokens for user authentication, allowing for stateless and secure authentication between the client and server.
 
-- **Kafka**: Implementing Apache Kafka as a distributed streaming platform can provide scalable and real-time data processing capabilities. It can be used for event-driven architecture, data streaming, and message queuing.
-
-- **ELK Stack**: Integrate the ELK (Elasticsearch, Logstash, Kibana) Stack for advanced log analysis, monitoring, and data visualization. Elasticsearch can be used for storing and searching log data, Logstash for log collection and processing, and Kibana for visualizing and analyzing log data.
-
-- **Redis**: Incorporate Redis as a distributed caching solution to improve performance and reduce database load. Redis can be used for caching frequently accessed data, session management, and content distribution.
-
-- **DevOps and Containerization**: Implement DevOps practices to automate the deployment, testing, and monitoring processes. Use containerization tools like Docker to package the application and its dependencies into containers, making it easier to deploy and manage in various environments.
-
 These enhancements and technologies can add additional value to the application by improving authentication security, scalability, real-time processing, log analysis, caching, and overall system performance. They also enable efficient deployment and management of the application through containerization and DevOps practices.
 
 ## Contribution
