@@ -1,0 +1,48 @@
+/* profileContentStyles.css */
+.profile {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .profile-avatar {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+  }
+  
+  .profile-header-details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .profile-name {
+    font-size: 24px;
+    margin: 0;
+  }
+  
+  .profile-stats {
+    display: flex;
+    align-items: center; /* Center the stats horizontally */
+    margin-top: 10px;
+  }
+  
+  .profile-stat {
+    margin-right: 10px; /* Adjusted to create space between stats */
+    font-size: 14px;
+    color: #777;
+  }
+  
+  .profile-bio {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+  }
+  

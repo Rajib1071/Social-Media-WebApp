@@ -35,22 +35,56 @@
 
 
 
-.post-options {
+/* .post-options {
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
-  }
+  } */
   
-  .post-option {
+  /* .post-option {
     display: flex;
     align-items: center;
-    color: #007bff; /* Like option color */
+    color: #007bff; 
     cursor: pointer;
-  }
+  } */
   
-  .option-icon {
+  /* .option-icon {
     margin-right: 5px;
-  }
+  } */
+
+
+
+.post-options {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.post-option {
+  display: flex;
+  align-items: center;
+  color: #007bff; /* Like option color */
+  cursor: pointer;
+}
+
+.option-icon {
+  margin-right: 5px;
+}
+
+.post-option.like {
+  color: #007bff;
+}
+
+.post-option.like .option-icon {
+  color: #007bff;
+}
+
+.likes-count {
+  color: #555;
+  font-size: 12px;
+  margin-left: 5px;
+}
+
   
   
   
