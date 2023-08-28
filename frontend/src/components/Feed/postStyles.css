@@ -1,0 +1,56 @@
+/* postStyles.css */
+.post {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  
+  .post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .post-author {
+    margin-left: 10px;
+    font-weight: bold;
+  }
+  
+  .post-content {
+    font-size: 14px;
+  }
+
+
+
+.post-photo {
+    display: block;
+    max-width: 100%;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+
+.post-options {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .post-option {
+    display: flex;
+    align-items: center;
+    color: #007bff; /* Like option color */
+    cursor: pointer;
+  }
+  
+  .option-icon {
+    margin-right: 5px;
+  }
+  
+  
+  

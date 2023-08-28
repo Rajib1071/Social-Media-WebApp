@@ -4,6 +4,7 @@ import './homeStyles.css'; // Import home styles
 import Topbar from '../../components/layout/Topbar';
 import Sidebar from '../../components/layout/Sidebar';
 import Rightbar from '../../components/layout/Rightbar';
+import Feed from '../../components/Feed/Feed';
 
 const Home = () => {
   return (
@@ -12,7 +13,7 @@ const Home = () => {
       <div className="content-container">
         <Sidebar />
         <div className="main-content">
-          {/* Your main content goes here */}
+          <Feed />
         </div>
         <Rightbar />
       </div>

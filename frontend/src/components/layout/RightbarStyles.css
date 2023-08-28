@@ -1,0 +1,47 @@
+/* rightBarStyles.css */
+.right-bar {
+    width: 300px;
+    background-color: #fff;
+    border-left: 1px solid #ccc;
+    padding: 20px;
+  }
+  
+  .right-bar-section {
+    margin-bottom: 20px;
+  }
+  
+  .right-bar h2 {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  
+  .friend-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .friend-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .friend-list li span {
+    margin-left: 10px;
+  }
+  
+
+
+.see-all-link {
+    text-align: right;
+  }
+  
+  .see-all-link a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+  }
+  
+  
+  

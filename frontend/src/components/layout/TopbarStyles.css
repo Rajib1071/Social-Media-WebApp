@@ -40,22 +40,55 @@
     text-decoration: none;
   }
   
-  .search-bar {
-    margin-left: 20px;
-  }
-  
-  .search-bar input {
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    outline: none;
-  }
-  
-  .top-bar-right {
-    flex: 1;
-    text-align: right;
-  }
-  
+
+
+.search-bar {
+  margin-left: 20px;
+  position: relative; /* Add this line */
+}
+
+.search-icon {
+  color: #888;
+  position: absolute; /* Add this line */
+  right: 10px; /* Add this line */
+  top: 50%; /* Add this line */
+  transform: translateY(-50%); /* Add this line */
+}
+
+.search-bar input {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+  padding-right: 30px; /* Adjust as needed */
+}
+
+ /* topBarStyles.css */
+/* ... (existing styles) */
+
+.user-avatar {
+  width: 24px;
+  height: 24px;
+  margin-right: 4px; /* Adjust the margin as needed */
+}
+
+.top-bar-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.top-bar-link {
+  color: #007bff;
+  text-decoration: none;
+  margin-right: 16px;
+}
+
+
+
+
+
   .top-bar-link:last-child {
     margin-left: 20px;
   }

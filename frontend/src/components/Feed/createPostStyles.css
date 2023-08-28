@@ -1,0 +1,82 @@
+
+
+.create-post {
+    /* ... (existing styles) */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    
+    
+  }
+  /* createPostStyles.css */
+.create-post {
+    background-color: #fff;
+    padding: 15px; /* Add padding */
+    /* ... (existing styles) */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  /* ... (existing styles) */
+  
+  
+  .create-post form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .textarea-container {
+    position: relative;
+    width: 80%; /* Adjust the width here */
+    max-width: 300px; /* Add a maximum width to prevent touching the boundary */
+  }
+  
+  .textarea-container textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    resize: none;
+  }
+  
+  /* ... (additional styles) */
+  
+  
+
+  .create-post button {
+    align-self: flex-end;
+    background-color: #007bff;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .create-post input[type="file"] {
+    margin-top: 10px;
+  }
+
+
+
+
+  .media-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Add this line to distribute items evenly */
+  }
+  
+  .media-icon {
+    /* ... (existing styles) */
+    margin-right: 10px; /* Add some spacing between the icon and the button */
+    color: rgb(229, 11, 178); /* Change the icon color to pink */
+  }
+  
+ 
+  
+  
+
+  
+  
