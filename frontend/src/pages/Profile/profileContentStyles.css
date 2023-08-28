@@ -47,4 +47,20 @@
   }
 
   
+/* profileContentStyles.css */
+/* ... (existing styles) */
+
+.edit-profile-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+  /* ... (existing styles) */
+  
   
