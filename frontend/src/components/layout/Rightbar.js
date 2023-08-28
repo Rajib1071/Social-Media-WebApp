@@ -6,7 +6,7 @@ const RightBar = () => {
   return (
     <div className="right-bar">
       <div className="right-bar-section">
-        <h2>My Friends</h2>
+        <h2>People you follow</h2>
         <ul className="friend-list">
           {/* List of friends */}
           <li>
@@ -20,7 +20,7 @@ const RightBar = () => {
         </div>
       </div>
       <div className="right-bar-section">
-        <h2>Suggested Friends</h2>
+        <h2>Suggested for you</h2>
         <ul className="friend-list">
           {/* Suggested friends */}
           <li>

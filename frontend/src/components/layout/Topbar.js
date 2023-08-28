@@ -14,7 +14,7 @@ const TopBar = () => {
     <div className="top-bar">
       <div className="top-bar-left">
         <Link to="/" className="logo">
-          My Social App
+          InstaPost
         </Link>
       </div>
       <div className="top-bar-center">
