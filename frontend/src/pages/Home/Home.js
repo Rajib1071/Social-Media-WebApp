@@ -1,18 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './homeStyles.css'; // Import the CSS file
+
+import './homeStyles.css'; // Import home styles
+import Topbar from '../../components/layout/Topbar';
+import Sidebar from '../../components/layout/Sidebar';
+import Rightbar from '../../components/layout/Rightbar';
 
 const Home = () => {
   return (
     <div className="home-container">
-      <h2 className="home-title">Welcome to My Social Media App</h2>
-      <p>Please choose an option:</p>
-      <Link to="/login" className="home-option">
-        Login
-      </Link>
-      <Link to="/register" className="home-option">
-        Register
-      </Link>
+      <Topbar />
+      <div className="content-container">
+        <Sidebar />
+        <div className="main-content">
+          {/* Your main content goes here */}
+        </div>
+        <Rightbar />
+      </div>
     </div>
   );
 };
