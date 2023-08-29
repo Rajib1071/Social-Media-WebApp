@@ -27,6 +27,7 @@ app.use(cors());
 // });
 
 // Connect to the database
+
 mongoose
   .connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
@@ -48,7 +49,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/posts', postRoutes);
 
 // Start the WebSocket server
-startWebSocketServer(server);
+// startWebSocketServer(server);
 
 // Start the server
 server.listen(PORT, () => {

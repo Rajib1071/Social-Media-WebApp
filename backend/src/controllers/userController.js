@@ -36,7 +36,7 @@ async function loginUser(req, res) {
     const user = await User.findOne({ email });
 
     // Check if the user exists and the password is correct
-    if (user && user.comparePassword(password)) {
+    if (user && await user.comparePassword(password)) {
       // Return the user as the response
       res.json(user);
     } else {
