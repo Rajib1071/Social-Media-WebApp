@@ -4,8 +4,8 @@ import './profileContentStyles.css';
 
 const ProfileContent = () => {
   const user = {
-    name: 'John Doe',
-    avatar: 'assets/person/dp1.png', // Replace with the actual path to the avatar image
+    name: 'Rajib Mondal',
+    avatar: 'assets/person/mydp.jpeg', // Replace with the actual path to the avatar image
     followers: 500,
     following: 300,
     posts: 50,

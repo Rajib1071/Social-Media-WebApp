@@ -49,7 +49,7 @@ const TopBar = () => {
         <Link to="/profile" className="top-bar-link">
           <Avatar
             alt="User Profile"
-            src="assets/person/dp1.png"
+            src="assets/person/mydp.jpeg"
             className="user-avatar"
           />
         </Link>

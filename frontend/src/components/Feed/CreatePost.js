@@ -25,7 +25,7 @@ const CreatePost = () => {
             <form onSubmit={handlePostSubmit}>
                 <div className="textarea-container">
                     <textarea
-                        placeholder="What's on your mind?"
+                        placeholder="Start a post"
                         value={postContent}
                         onChange={(e) => setPostContent(e.target.value)}
                         rows="1" /* Show only one line */

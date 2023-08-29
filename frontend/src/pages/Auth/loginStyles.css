@@ -1,27 +1,46 @@
 /* loginStyles.css */
-.login-form {
-    max-width: 300px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .login-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .login-button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
+.login-container {
+  max-width: 300px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+input {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-options {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.login-options a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.divider {
+  margin: 0 10px;
+}

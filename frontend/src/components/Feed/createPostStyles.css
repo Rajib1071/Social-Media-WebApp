@@ -29,8 +29,8 @@
   
   .textarea-container {
     position: relative;
-    width: 80%; /* Adjust the width here */
-    max-width: 300px; /* Add a maximum width to prevent touching the boundary */
+    width: 90%; /* Adjust the width here */
+    max-width: 700px; /* Add a maximum width to prevent touching the boundary */
   }
   
   .textarea-container textarea {
