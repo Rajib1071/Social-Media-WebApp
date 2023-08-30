@@ -16,6 +16,15 @@ const userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   }],
+  followers: [{ // New field for followers
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  }],
+  bio: { type: String },
+  profilePhoto: {
+    data: Buffer,
+    contentType: String
+  },
 });
 
 // Add a pre-save hook to hash the password before saving
