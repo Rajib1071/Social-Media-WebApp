@@ -1,3 +1,7 @@
-1. controller function for update profile where profile photo and bio 
-2. followers array will be added
+
 3. editprofile and editpost page should be created in frontend
+
+
+
+
+4.implementing like functionality

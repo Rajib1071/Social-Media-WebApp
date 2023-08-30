@@ -121,7 +121,7 @@ async function loginUser(req, res) {
 
 
 
-// Controller function for follow a user
+// Controller function for follow/unfollow a user
 async function followUser(req, res) {
   const { userId, followId } = req.body;
 
@@ -144,13 +144,15 @@ async function followUser(req, res) {
     if (isFollowing) {
       // Unfollow the user by removing their ID from the following array
       currentUser.following.pull(followId);
-      await currentUser.save();
+      userToFollow.followers.pull(userId); // Remove follower from userToFollow's followers
+      await Promise.all([currentUser.save(), userToFollow.save()]);
 
       return res.status(200).json({ message: 'User unfollowed successfully' });
     } else {
       // Follow the user by adding their ID to the following array
       currentUser.following.push(followId);
-      await currentUser.save();
+      userToFollow.followers.push(userId); // Add follower to userToFollow's followers
+      await Promise.all([currentUser.save(), userToFollow.save()]);
 
       return res.status(200).json({ message: 'User followed successfully' });
     }

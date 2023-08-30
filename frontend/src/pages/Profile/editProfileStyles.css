@@ -1,0 +1,54 @@
+/* editProfileStyles.css */
+
+.edit-profile-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .edit-profile-container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .edit-profile-container form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .edit-profile-container label {
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .edit-profile-container input,
+  .edit-profile-container textarea {
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .edit-profile-container button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .edit-profile-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Style for the file input */
+  .edit-profile-container input[type="file"] {
+    margin-bottom: 15px;
+  }
+  
+  /* Add more styling as needed */
+  

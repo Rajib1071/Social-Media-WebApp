@@ -18,6 +18,36 @@
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin: 0 20px;
-    overflow-y: auto;
+    overflow-y: auto; /* Add scroll bar for vertical overflow */
+    height: calc(100vh - 60px); /* Adjust for top bar height */
   }
+
+  .options-buttons {
+    display: flex;
+    justify-content: center; /* Center buttons horizontally */
+    gap: 10px; /* Add spacing between buttons */
+    margin-bottom: 10px; /* Add some bottom margin */
+  }
+  
+  .options-buttons button {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .options-buttons button.active {
+    background-color: #0056b3;
+  }
+  
+  /* Add any additional styles as needed */
+  
+  
+  
+  
+  
+  
+  
   

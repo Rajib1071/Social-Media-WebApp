@@ -32,7 +32,7 @@ const ProfileContent = () => {
         </div>
       </div>
       <p className="profile-bio">{user.bio}</p>
-      <button className="edit-profile-button">Edit Profile</button>
+      <button className="edit-profile-button">Follow</button>
     </div>
   );
 };
