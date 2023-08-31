@@ -41,7 +41,8 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
-    ]
+    ],
+    "apiUrl": "http://localhost:3001/api"
   },
   "main": "index.js",
   "author": "",

@@ -1,7 +1,20 @@
 
-3. editprofile and editpost page should be created in frontend
 
 
+2.add create post option in profile page
 
+3.login logout
 
 4.implementing like functionality
+
+5.chatMessage
+
+
+
+6. add tag emoji and location with attaching photo option at create post
+
+7.add sort by option on posts
+
+8.notifications
+
+9. user can comment on posts 

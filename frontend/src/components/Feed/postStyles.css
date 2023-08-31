@@ -22,9 +22,37 @@
   
   .post-content {
     font-size: 14px;
+    position: relative; /* Add position property */
+    padding-right: 20px; /* Add padding to create space on the right side */
   }
 
+  .post-content textarea {
+    /* Styles for textarea when in edit mode */
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+    box-sizing: border-box; /* Include padding and border in width calculation */
+}
 
+/* Styles for "Save" and "Cancel" buttons */
+.edit-buttons {
+  display: flex;
+  
+  justify-content: flex-end;
+  margin-top: 10px; /* Add some top margin */
+}
+
+.edit-buttons button {
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px; /* Add spacing between buttons */
+}
 
 .post-photo {
     display: block;
