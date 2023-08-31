@@ -96,7 +96,7 @@ async function createPost(req, res) {
 
 // Controller function for getting all posts 
 async function getAllPosts(req, res) {
-  const { userId } = req.body;
+  const { userId } = req.params; // Use req.params to get the userId
 
   try {
     // Retrieve the user from the database
@@ -226,6 +226,47 @@ async function getFollowedPosts(req, res) {
   }
 }
 
+// Controller function for liking a post
+async function likePost(req, res) {
+ 
+  const { postId, userId } = req.body;
+
+  try {
+    // Check if the current user exists
+    console.log(userId)
+    const currentUser = await User.findById(userId);
+    if (!currentUser) {
+      return res.status(404).json({ error: 'Current user not found' });
+    }
+
+    // Check if the post exists
+    const post = await Post.findById(postId);
+    if (!post) {
+      return res.status(404).json({ error: 'Post not found' });
+    }
+
+    // Check if the user has already liked the post
+    const alreadyLiked = post.likes.includes(userId);
+
+    if (alreadyLiked) {
+      // Unlike the post by removing the user's ID from the likes array
+      post.likes.pull(userId);
+      await post.save();
+
+      return res.status(200).json({ message: 'Post unliked successfully' });
+    } else {
+      // Like the post by adding the user's ID to the likes array
+      post.likes.push(userId);
+      await post.save();
+
+      return res.status(200).json({ message: 'Post liked successfully' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to like/unlike post' });
+  }
+}
+
+
 
 
 // Export the controller functions
@@ -235,4 +276,5 @@ module.exports = {
   getAllPosts,
   editPost,
   getFollowedPosts,
+  likePost,
 };

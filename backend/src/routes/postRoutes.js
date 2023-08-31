@@ -4,23 +4,15 @@ const upload = require('../middlewares/fileUpload'); // Adjust the path based on
 const postController = require('../controllers/postController');
 
 // Define the routes
-// Delete a post
+// Define the routes
 router.delete('/', postController.deletePost);
-
-// Create a new post
-// router.post('/', postController.createPost);
-// Use the upload middleware in the post route
 router.post('/', upload.single('image'), postController.createPost);
-
-// Get all posts for a user
-router.get('/', postController.getAllPosts);
-
-
-// Route for editing a post
+router.get('/user/:userId', postController.getAllPosts); // Use a different pattern here
+router.post('/like', postController.likePost);
 router.put('/', postController.editPost);
+router.get('/followed-posts', postController.getFollowedPosts); // Use a different pattern here
 
-// Route to get the posts of the users being followed
-router.get('/followed', postController.getFollowedPosts);
+
 
 // Export the router
 module.exports = router;

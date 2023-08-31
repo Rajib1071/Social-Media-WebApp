@@ -1,32 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import CreatePost from './CreatePost'; // Import the CreatePost component
 import Post from './Post'; // Import the Post component
 import './feedStyles.css'; // Import feed styles
+import axios from 'axios';
 
 const Feed = () => {
-    // Dummy data for posts
-    const posts = [
-        {
-            id: 1,
-            author: {
-                name: 'Puja Singh',
-                avatar: "assets/person/dp3.png",
-            },
-            content: 'Just had a great time at the park!',
-            photo: 'assets/post/post1.png',
-        },
-        {
-            id: 2,
-            author: {
-                name: 'Jane Smith',
-                avatar: "assets/person/dp4.png",
-            },
-            content: 'Feeling excited about the upcoming event!',
-            photo: 'assets/post/post2.png',
-        },
-        // Add more post objects
-    ];
+    
+    const [posts, setPosts] = useState([]); // State to hold posts
 
+    useEffect(() => {
+        async function fetchPosts() {
+            try {
+                const response = await axios.get('http://localhost:3001/api/posts/user/64f03f378c3e15f65b642471'); // Replace with your actual endpoint
+                setPosts(response.data);
+            } catch (error) {
+                console.error('Error fetching posts:', error);
+            }
+        }
+
+        fetchPosts();
+    }, []); // Empty dependency array means this effect runs only once after initial render
     return (
         <div className="feed">
             <CreatePost />

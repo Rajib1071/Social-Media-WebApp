@@ -47,8 +47,7 @@ async function registerUser(req, res) {
 }
 // Controller function for updating user profile
 async function updateProfile(req, res) {
-  const { bio, userId } = req.body;
-
+  const { bio, userId, username } = req.body;
   try {
     // Check if the user exists
     const user = await User.findById(userId);
@@ -61,7 +60,10 @@ async function updateProfile(req, res) {
     if (bio) {
       user.bio = bio;
     }
-
+    // Update the user's name if provided
+    if (username) {
+      user.username = username;
+    }
     // Check if an image file was uploaded
     if (req.file) {
       // Read the image file content
@@ -70,20 +72,7 @@ async function updateProfile(req, res) {
         data: imageBuffer,
         contentType: req.file.mimetype
       };
-      // Usage example
-      // const inputImageBuffer = imageBuffer // Provide your image buffer here
-      // const outputFolderPath = './new';
-      // const outputFileName = 'new-image';
-
-      // const outputPath = `${outputFolderPath}${outputFileName}.jpg`;
-
-      // convertAndSaveToJpeg(inputImageBuffer, outputPath)
-      //   .then(savedPath => {
-      //     console.log(`Image converted and saved to: ${savedPath}`);
-      //   })
-      //   .catch(error => {
-      //     console.error(error.message);
-      //   });
+      
       fs.unlinkSync(req.file.path);
     }
 
@@ -119,6 +108,33 @@ async function loginUser(req, res) {
   }
 }
 
+// Controller function to get user details
+async function getUserDetails(req, res) {
+  const { userId } = req.params;
+
+  try {
+    // Find the user by their ID
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    // Extract relevant user details
+    const userDetails = {
+      username: user.username,
+      bio: user.bio,
+      profilePhoto: user.profilePhoto,
+      followers: user.followers.length,
+      followings: user.following.length,
+      posts: user.posts.length,
+    };
+
+    res.json(userDetails);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to retrieve user details' });
+  }
+}
 
 
 // Controller function for follow/unfollow a user
@@ -127,6 +143,7 @@ async function followUser(req, res) {
 
   try {
     // Check if the current user exists
+    
     const currentUser = await User.findById(userId);
     if (!currentUser) {
       return res.status(404).json({ error: 'Current user not found' });
@@ -169,4 +186,5 @@ module.exports = {
   loginUser,
   followUser,
   updateProfile,
+  getUserDetails,
 };

@@ -74,8 +74,20 @@
     color: rgb(229, 11, 178); /* Change the icon color to pink */
   }
   
- 
+  .uploaded-photo {
+    max-width: 100px; /* Adjust the maximum width as needed */
+    max-height: 100px; /* Adjust the maximum height as needed */
+    object-fit: cover; /* Maintain the aspect ratio and cover the container */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
   
+.caption {
+  text-align: center;
+  margin-top: 5px; /* Add margin for spacing */
+  color: #666; /* Choose an appropriate color for the caption */
+}
+
   
 
   

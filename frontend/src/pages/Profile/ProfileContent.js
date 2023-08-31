@@ -15,7 +15,7 @@ const ProfileContent = () => {
   return (
     <div className="profile">
       <div className="profile-header">
-      <Avatar alt={user.name} src={user.avatar} className="profile-avatar" style={{ width: '150px', height: '150px' }} /> {/* Adjust width and height here */}
+      <Avatar alt={user.name} src={user.avatar} className="profile-avatar" style={{ width: '150px', height: '150px' }} /> 
         <div className="profile-header-details">
           <h2 className="profile-name">{user.name}</h2>
           <div className="profile-stats">
