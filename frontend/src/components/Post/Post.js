@@ -11,7 +11,8 @@ import './postStyles.css';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for styling
-
+import { Link } from 'react-router-dom'; // Import the Link component
+import ProfileLink from '../ProfileLink/ProfileLink';
 
 const Post = ({ post }) => {
     const [likes, setLikes] = useState(post.likes.length || 0);
@@ -31,27 +32,7 @@ const Post = ({ post }) => {
             const imageUrl = URL.createObjectURL(blob);// Create a temporary object URL for the Blob
             setImageSrc(imageUrl);// Set the image source URL to the temporary URL
         }
-        async function fetchAuthor() {
-            try {
-                const response = await axios.get(`http://localhost:3001/api/users/details/${post.author}`);
-                if (response.status === 200) {
-                    const authorData = response.data;
-                    if (authorData.profilePhoto && authorData.profilePhoto.data) {
-                        const avatarArrayBufferView = new Uint8Array(authorData.profilePhoto.data.data);
-                        const avatarBlob = new Blob([avatarArrayBufferView], { type: 'image/jpeg' });
-                        const avatarUrl = URL.createObjectURL(avatarBlob);
-                        authorData.avatarUrl = avatarUrl;
-                    }
-                    console.log(response.data)
-                    setAuthor(authorData);
-                } else {
-                    console.error('Error fetching author data');
-                }
-            } catch (error) {
-                console.error('Error fetching author:', error);
-            }
-        }
-        fetchAuthor();
+        
     }, [post]);
 
     const handleDelete = async () => {
@@ -167,11 +148,8 @@ const Post = ({ post }) => {
         <div className="post">
             <ToastContainer /> {/* Place the ToastContainer here */}
             <div className="post-header">
-                {/* <Avatar alt={post.author.name} src={post.author.avatar} /> */}
-                <Avatar alt={author && author.username} src={author && author.avatarUrl} />
-                {/* <span className="post-author">{post.author.name}</span> */}
-                {/* console.log(author) */}
-                <span className="post-author">{author && author.username}</span>
+                {/* Pass the author ID as a prop to the ProfileLink component */}
+                <ProfileLink authorId={post.author} />
                 <MoreVertIcon className="more-icon" onClick={handleOpenMenu} />
             </div>
             <p className="post-content">

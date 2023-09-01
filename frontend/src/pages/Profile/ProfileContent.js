@@ -3,14 +3,15 @@ import Avatar from '@mui/material/Avatar';
 import './profileContentStyles.css';
 import axios from 'axios';
 
-const ProfileContent = () => {
+const ProfileContent = ({ profileId }) => {
   const [user, setUser] = useState(null);
   const [imageSrc, setImageSrc] = useState('');
-  const userId = '64f03f378c3e15f65b642471';
+  const [isMyProfile, setisMyProfile] = useState(true);
+  const userId = '64f064c345337ef66d3c86e2';
   useEffect(() => {
     const fetchUserDetails = async () => {
         try {
-            const response = await axios.get(`http://localhost:3001/api/users/details/${userId}`);
+            const response = await axios.get(`http://localhost:3001/api/users/details/${profileId}`);
             
             if (response.status === 200) {
                 setUser(response.data);
@@ -29,6 +30,11 @@ const ProfileContent = () => {
 
     fetchUserDetails();
 }, [userId]);
+
+useEffect(() => {
+  // Check if userId matches profileId and set isMyProfile accordingly
+  setisMyProfile(userId === profileId);
+}, [userId, profileId]); // Run this effect when userId or profileId change
 
   const duser = {
     name: 'Rajib Mondal',
@@ -59,7 +65,7 @@ const ProfileContent = () => {
         </div>
       </div>
       <p className="profile-bio">{user && user.bio}</p>
-      <button className="edit-profile-button">Follow</button>
+      {isMyProfile ? null : <button className="follow-button">Follow</button>}
     </div>
   );
 };

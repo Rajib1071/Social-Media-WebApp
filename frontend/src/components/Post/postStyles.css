@@ -15,10 +15,7 @@
     position: relative;
   }
   
-  .post-author {
-    margin-left: 10px;
-    font-weight: bold;
-  }
+
   
   .post-content {
     font-size: 14px;
@@ -64,7 +61,7 @@
   margin-right: auto;
   }
 
-
+ 
 
 /* .post-options {
     display: flex;

@@ -87,3 +87,14 @@
 .top-bar-link:last-child {
   margin-left: 20px;
 }
+
+.profile-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.profile-link:hover {
+  text-decoration: underline; /* Add an underline on hover (optional) */
+}

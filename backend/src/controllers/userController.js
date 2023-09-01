@@ -124,6 +124,7 @@ async function getUserDetails(req, res) {
     const userDetails = {
       username: user.username,
       bio: user.bio,
+      id:user._id,
       profilePhoto: user.profilePhoto,
       followers: user.followers.length,
       followings: user.following.length,
