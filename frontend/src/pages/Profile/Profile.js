@@ -4,8 +4,8 @@ import Topbar from '../../components/layout/Topbar';
 import Sidebar from '../../components/layout/Sidebar';
 import Rightbar from '../../components/layout/Rightbar';
 import ProfileContent from './ProfileContent'; // Create this component
-import EditProfile from './EditProfile'; // Create this component
-import Post from '../../components/Feed/Post'; // Create this component
+import EditProfile from './EditProfile'; 
+import Post from '../../components/Post/Post'; 
 import axios from 'axios'; 
 
 const Profile = () => {

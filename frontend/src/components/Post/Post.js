@@ -21,6 +21,7 @@ const Post = ({ post }) => {
     const [editedContent, setEditedContent] = useState(post.content); // Track edited content
     const [imageSrc, setImageSrc] = useState('');
     const [author, setAuthor] = useState(null);
+    const [editedTitle, setEditedTitle] = useState(''); // Track edited content
 
     useEffect(() => {
         setIsLiked(post.likes.includes('64f064c345337ef66d3c86e2')); // Set isLiked based on user's like status
@@ -52,6 +53,7 @@ const Post = ({ post }) => {
         }
         fetchAuthor();
     }, [post]);
+
     const handleDelete = async () => {
         setAnchorEl(null); // Close the menu
 
@@ -93,10 +95,32 @@ const Post = ({ post }) => {
         setEditedContent(post.content);
     };
 
-    const handleSaveEdit = () => {
+    const handleSaveEdit = async () => {
         // Implement your save logic here
-        console.log('Save post:', post.id, 'Edited Content:', editedContent);
+        try {
+            const response = await axios.put(`http://localhost:3001/api/posts`, {
+                postId: post._id,
+                title: editedTitle,
+                content: editedContent,
+            });
 
+            if (response.status === 200) {
+                toast.success('Post edited successfully', {
+                    position: toast.POSITION.TOP_RIGHT,
+                    autoClose: 3000,
+                });
+                setTimeout(() => {
+                    window.location.reload();
+                }, 3000);
+                // Exit edit mode
+                setIsEditing(false);
+            }
+        } catch (error) {
+            toast.error('Error editing post', {
+                position: toast.POSITION.TOP_RIGHT,
+                autoClose: 3000,
+            });
+        }
         // Exit edit mode
         setIsEditing(false);
     };

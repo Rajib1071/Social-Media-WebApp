@@ -184,8 +184,12 @@ async function editPost(req, res) {
     }
 
     // Update the post's title and content
+    if (title) {
     post.title = title;
+    }
+    if (content) {
     post.content = content;
+    }
 
     // Save the updated post
     const updatedPost = await post.save();

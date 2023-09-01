@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import CreatePost from './CreatePost'; // Import the CreatePost component
-import Post from './Post'; // Import the Post component
+import Post from '../Post/Post'; // Import the Post component
 import './feedStyles.css'; // Import feed styles
 import axios from 'axios';
+
 
 const Feed = () => {
     
