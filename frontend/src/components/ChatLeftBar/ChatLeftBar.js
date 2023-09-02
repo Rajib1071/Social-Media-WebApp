@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import SearchIcon from '@mui/icons-material/Search';
@@ -21,20 +21,29 @@ const dummyUsers = [
   },
 ];
 function ChatLeftBar() {
+  const [selectedUser, setSelectedUser] = useState(null);
+
+  const handleUserClick = (userId) => {
+    setSelectedUser(userId);
+  };
   return (
     <div className="chat-Left-bar">
-       <div className="search-bar">
+      <div className="search-bar">
         <SearchIcon className="search-icon" />
         <input type="text" placeholder="Search users" className="search-input" />
       </div>
       <h2>Chat Users</h2>
       <ul>
         {dummyUsers.map((user) => (
-          <li key={user.id}>
-            <Link to={`/profile`} className="profile-link">
+          <li
+            key={user.id}
+            className={selectedUser === user.id ? "selected-user" : ""}
+            onClick={() => handleUserClick(user.id)}
+          >
+            <div className="profile-link">
               <Avatar alt={user.username} src={user.avatarUrl} />
               <span className="user-username">{user.username}</span>
-            </Link>
+            </div>
           </li>
         ))}
       </ul>

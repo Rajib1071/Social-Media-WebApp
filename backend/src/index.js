@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const http = require('http');
 const userRoutes = require('./routes/userRoutes');
 const postRoutes = require('./routes/postRoutes');
+const messageRoutes = require('./routes/messageRoutes');
+const conversationRoutes = require('./routes/conversationRoutes');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
 const cors = require('cors');
@@ -47,6 +49,8 @@ app.use(morgan('common')); // Logging middleware
 
 app.use('/api/users', userRoutes);
 app.use('/api/posts', postRoutes);
+app.use('/api/message', messageRoutes);
+app.use('/api/conversation', conversationRoutes);
 
 // Start the WebSocket server
 // startWebSocketServer(server);

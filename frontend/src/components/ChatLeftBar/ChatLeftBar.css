@@ -69,3 +69,8 @@
   border: 1px solid #ddd;
   border-radius: 3px;
 }
+
+.selected-user {
+  background-color: #fff;  /* Change this color to your desired highlight color */
+  /* color: #fff; Text color for selected user */
+}

@@ -16,7 +16,7 @@ function Root() {
       <Routes>
         {/* Placeholder routes until you create the Login and Register components */}
         {/* <Route path="/login" element={<Login />} /> */}
-        <Route path="/messages" element={<ChatPage />} />
+        <Route path="/messages" element={currentUser ? <ChatPage /> : <Navigate replace to="/login" /> }/>
         <Route path="/login" element={currentUser ? <Navigate replace to="/" /> : <Login />} />
         <Route path="/register" element={currentUser ? <Navigate replace to="/" /> : <Register />} />
         {/* <Route path="/profile" element={<Profile />} /> */}
