@@ -109,8 +109,10 @@ async function loginUser(req, res) {
 }
 
 // Controller function to get user details
+// Controller function to get user details
 async function getUserDetails(req, res) {
   const { userId } = req.params;
+  const { currentUserId } = req.query; // Assuming you pass currentUserId as a query parameter
 
   try {
     // Find the user by their ID
@@ -120,15 +122,19 @@ async function getUserDetails(req, res) {
       return res.status(404).json({ error: 'User not found' });
     }
 
+    // Check if the current user is following the user being viewed
+    const isFollowingUser = user.followers.includes(currentUserId);
+
     // Extract relevant user details
     const userDetails = {
       username: user.username,
       bio: user.bio,
-      id:user._id,
+      id: user._id,
       profilePhoto: user.profilePhoto,
       followers: user.followers.length,
       followings: user.following.length,
       posts: user.posts.length,
+      isFollowingUser: isFollowingUser, // Include isFollowingUser in the response
     };
 
     res.json(userDetails);
@@ -136,6 +142,7 @@ async function getUserDetails(req, res) {
     res.status(500).json({ error: 'Failed to retrieve user details' });
   }
 }
+
 
 
 // Controller function for follow/unfollow a user
@@ -179,6 +186,22 @@ async function followUser(req, res) {
   }
 }
 
+// Controller function to get the IDs of the latest 5 users created
+async function getLatestUserIds(req, res) {
+  try {
+    // Find the latest 5 users created, sorted by creation date in descending order
+    const latestUsers = await User.find()
+      .sort({ createdAt: -1 }) // Sort by creation date in descending order
+      .limit(5); // Limit the results to 5 users
+
+    // Extract and return only the user IDs
+    const latestUserIds = latestUsers.map(user => user._id);
+
+    res.json(latestUserIds);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to retrieve latest user IDs' });
+  }
+}
 
 
 // Export the controller functions
@@ -188,4 +211,5 @@ module.exports = {
   followUser,
   updateProfile,
   getUserDetails,
+  getLatestUserIds,
 };

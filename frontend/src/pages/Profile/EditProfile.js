@@ -3,12 +3,13 @@ import './editProfileStyles.css'; // Import the CSS file
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for styling
+import { useAppContext } from '../../AppContext';
 
 const EditProfile = () => {
   const [name, setName] = useState('');
   const [bio, setBio] = useState('');
   const [profilePhoto, setProfilePhoto] = useState('');
-
+  const { state: { currentUser } } = useAppContext();
   const handleSaveChanges = async (e) => {
     // Handle saving changes to the profile
     // console.log('Name:', name);
@@ -18,7 +19,7 @@ const EditProfile = () => {
     const formData = new FormData();
     formData.append('username', name); // Add name
     formData.append('bio', bio); // Add bio
-    formData.append('userId', '64f03f378c3e15f65b642471'); // Replace with the actual user ID
+    formData.append('userId', currentUser._id); // Replace with the actual user ID
     if (profilePhoto) {
       formData.append('profilePhoto', profilePhoto); // Append the image file to the FormData
     }

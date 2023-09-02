@@ -26,9 +26,9 @@ const Register = () => {
           position: toast.POSITION.TOP_RIGHT,
           autoClose: 3000,
         });
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 3000);
       }
     } catch (error) {
       console.error('Error registering user:', error);

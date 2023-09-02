@@ -8,14 +8,26 @@ import EditProfile from './EditProfile';
 import Post from '../../components/Post/Post';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { useAppContext } from '../../AppContext';
 
 const Profile = () => {
+  const [isFollowingUser, setIsFollowingUser] = useState(false); // Initialize with an appropriate initial value
   const { profileId } = useParams();
   const [posts, setPosts] = useState([]); // State to hold posts
   const [isMyProfile, setisMyProfile] = useState(false);
-  const userId = '64f064c345337ef66d3c86e2';
-  // 64f03f378c3e15f65b642471
+  const { state: { currentUser } } = useAppContext();
+  const userId = currentUser._id;
+  
+
+  const [selectedOption, setSelectedOption] = useState('my-posts'); // Default selected option
+
+  const handleOptionClick = (option) => {
+    setSelectedOption(option);
+  };
+
   useEffect(() => {
+    // Check if userId matches profileId and set isMyProfile accordingly
+    setisMyProfile(userId === profileId);
     async function fetchPosts() {
       try {
         const response = await axios.get(`http://localhost:3001/api/posts/user/${profileId}`); // Replace with your actual endpoint
@@ -26,16 +38,6 @@ const Profile = () => {
     }
 
     fetchPosts();
-  }, []); // Empty dependency array means this effect runs only once after initial render
-  const [selectedOption, setSelectedOption] = useState('my-posts'); // Default selected option
-
-  const handleOptionClick = (option) => {
-    setSelectedOption(option);
-  };
-
-  useEffect(() => {
-    // Check if userId matches profileId and set isMyProfile accordingly
-    setisMyProfile(userId === profileId);
   }, [userId, profileId]); // Run this effect when userId or profileId changes
 
   return (

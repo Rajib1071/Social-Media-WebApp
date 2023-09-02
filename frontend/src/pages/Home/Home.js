@@ -18,14 +18,14 @@ const Home = () => {
       // You can perform other actions here
     }
   }, [currentUser]);
-    useEffect(() => {
-    if (!currentUser) {
-      navigate('/login');
-    }
-  }, [currentUser, navigate]);
+  //   useEffect(() => {
+  //   if (!currentUser) {
+  //     navigate('/login');
+  //   }
+  // }, [currentUser, navigate]);
   return (
     <div className="home-container">
-      <div>User Data: {currentUser._id}</div> {/* Display currentUser data */}
+      
       <Topbar />
       <div className="content-container">
         <Sidebar />

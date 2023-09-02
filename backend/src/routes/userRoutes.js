@@ -14,5 +14,8 @@ router.put('/profile', upload.single('profilePhoto'), userController.updateProfi
 // router.put('/profile/:username', upload.single('profilePhoto'), userController.updateProfile);
 
 router.get('/details/:userId', userController.getUserDetails);
+router.get('/latest-users', userController.getLatestUserIds);
+
+
 
 module.exports = router;

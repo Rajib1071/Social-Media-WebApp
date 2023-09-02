@@ -270,6 +270,34 @@ async function likePost(req, res) {
   }
 }
 
+// Controller function for getting Followed Posts and User's Own Posts
+async function getFollowedAndOwnPosts(req, res) {
+  const { userId } = req.params; // Assuming userId is part of the route parameters
+
+  try {
+    // Check if the current user exists
+    const currentUser = await User.findById(userId);
+    if (!currentUser) {
+      return res.status(404).json({ error: 'Current user not found' });
+    }
+
+    // Retrieve the IDs of the users being followed by the current user
+    const followedUserIds = currentUser.following;
+
+    // Retrieve the posts created by the followed users and the current user
+    const followedPosts = await Post.find({ author: { $in: followedUserIds } });
+    
+    // Retrieve the posts created by the current user
+    const ownPosts = await Post.find({ author: userId });
+
+    // Combine both followed and own posts
+    const allPosts = followedPosts.concat(ownPosts);
+
+    res.status(200).json(allPosts);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to retrieve posts' });
+  }
+}
 
 
 
@@ -281,4 +309,5 @@ module.exports = {
   editPost,
   getFollowedPosts,
   likePost,
+  getFollowedAndOwnPosts,
 };

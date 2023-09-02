@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Avatar from '@mui/material/Avatar';
+
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ShareIcon from '@mui/icons-material/Share';
 import CommentIcon from '@mui/icons-material/Comment';
@@ -11,7 +11,7 @@ import './postStyles.css';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for styling
-import { Link } from 'react-router-dom'; // Import the Link component
+import { useAppContext } from '../../AppContext';
 import ProfileLink from '../ProfileLink/ProfileLink';
 
 const Post = ({ post }) => {
@@ -23,9 +23,10 @@ const Post = ({ post }) => {
     const [imageSrc, setImageSrc] = useState('');
     const [author, setAuthor] = useState(null);
     const [editedTitle, setEditedTitle] = useState(''); // Track edited content
+    const { state: { currentUser } } = useAppContext();
 
     useEffect(() => {
-        setIsLiked(post.likes.includes('64f064c345337ef66d3c86e2')); // Set isLiked based on user's like status
+        setIsLiked(post.likes.includes(currentUser._id)); // Set isLiked based on user's like status
         if (post.image && post.image.data) {
             const arrayBufferView = new Uint8Array(post.image.data.data);// Create a Uint8Array from the Buffer's data
             const blob = new Blob([arrayBufferView], { type: 'image/jpeg' });// Create a Blob from the Uint8Array
@@ -41,7 +42,7 @@ const Post = ({ post }) => {
         try {
             const response = await axios.delete('http://localhost:3001/api/posts', {
                 data: {
-                    userId: '64f03f378c3e15f65b642471', // Replace with the actual user ID
+                    userId: currentUser._id, // Replace with the actual user ID
                     postId: post._id,
                 },
             });
@@ -118,7 +119,7 @@ const Post = ({ post }) => {
         try {
             const response = await axios.post('http://localhost:3001/api/posts/like', {
                 postId: post._id, // Use the post's _id field
-                userId: '64f064c345337ef66d3c86e2', // Replace with the actual userId of the current user
+                userId: currentUser._id, // Replace with the actual userId of the current user
             });
 
             if (response.status === 200) {

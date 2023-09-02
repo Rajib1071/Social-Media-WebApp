@@ -5,11 +5,13 @@ import './createPostStyles.css';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for styling
+import { useAppContext } from '../../AppContext';
 
 const CreatePost = () => {
     const [postContent, setPostContent] = useState('');
     const [postPhoto, setPostPhoto] = useState(null);
-
+    const { state: { currentUser } } = useAppContext();
+    const userId = currentUser._id;
     const handlePostSubmit = async (e) => {
         e.preventDefault();
         // Handle post submission
@@ -17,7 +19,7 @@ const CreatePost = () => {
         const formData = new FormData();
         formData.append('title', 'New Post Title'); // Add your post title
         formData.append('content', postContent); // Add post content
-        formData.append('userId', '64f03f378c3e15f65b642471'); // Replace with the actual user ID
+        formData.append('userId', userId); // Replace with the actual user ID
 
         if (postPhoto) {
             formData.append('image', postPhoto); // Append the image file to the FormData
@@ -41,9 +43,9 @@ const CreatePost = () => {
                 // Reload the page after successful post
                 // window.location.reload();
                 // Reload the page after a delay of 3 seconds
-                setTimeout(() => {
-                    window.location.reload();
-                }, 3000);
+                // setTimeout(() => {
+                //     window.location.reload();
+                // }, 3000);
             }
         } catch (error) {
             // Handle error (e.g., show an error message)

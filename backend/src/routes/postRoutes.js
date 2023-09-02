@@ -12,6 +12,8 @@ router.post('/like', postController.likePost);
 router.put('/', postController.editPost);
 router.get('/followed-posts', postController.getFollowedPosts); // Use a different pattern here
 
+// Route to get both followed and own posts
+router.get('/user-followers/:userId', postController.getFollowedAndOwnPosts);
 
 
 // Export the router

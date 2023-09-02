@@ -11,7 +11,7 @@ const Login = () => {
   const { dispatch} = useAppContext(); // Get the dispatch function from the context
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate(); // Get the history object
+  // const navigate = useNavigate(); // Get the history object
   const handleLogin = async (e) => {
     e.preventDefault();
     // Add your login logic here
