@@ -1,0 +1,17 @@
+/* ChatPage.css */
+
+/* Style for the entire chat page */
+.chat-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Adjust the height as needed */
+  }
+  
+
+  
+  /* Style for the chat content section */
+  .chat-content {
+    display: flex;
+    flex-grow: 1;
+  }
+ 

@@ -1,0 +1,13 @@
+.chat-box {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    height: 100%; /* Adjust the height as needed */
+    /* you can remove width */
+    width: 500px;
+  }
+  

@@ -11,7 +11,7 @@ import './postStyles.css';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for styling
-import { useAppContext } from '../../AppContext';
+import { useAppContext, REMOVE_POST_FROM_USER } from '../../AppContext';
 import ProfileLink from '../ProfileLink/ProfileLink';
 
 const Post = ({ post }) => {
@@ -24,6 +24,8 @@ const Post = ({ post }) => {
     const [author, setAuthor] = useState(null);
     const [editedTitle, setEditedTitle] = useState(''); // Track edited content
     const { state: { currentUser } } = useAppContext();
+    const { dispatch } = useAppContext();
+    // const [isEdited, setIsEdited] = useState(false);
 
     useEffect(() => {
         setIsLiked(post.likes.includes(currentUser._id)); // Set isLiked based on user's like status
@@ -33,8 +35,12 @@ const Post = ({ post }) => {
             const imageUrl = URL.createObjectURL(blob);// Create a temporary object URL for the Blob
             setImageSrc(imageUrl);// Set the image source URL to the temporary URL
         }
-        
+
     }, [post]);
+
+    // useEffect(() => {
+    //        console.log("isedited");
+    // }, [isEdited]);
 
     const handleDelete = async () => {
         setAnchorEl(null); // Close the menu
@@ -48,15 +54,18 @@ const Post = ({ post }) => {
             });
 
             if (response.status === 200) {
+                // Dispatch the action to remove the post from the user's posts array
+                dispatch({ type: REMOVE_POST_FROM_USER, payload: post._id });
+
                 // Show success toast
                 toast.success('Post deleted successfully', {
                     position: toast.POSITION.TOP_RIGHT,
                     autoClose: 3000,
                 });
-                setTimeout(() => {
-                    window.location.reload();
-                }, 3000);
-                // Optionally, you can update your state or re-fetch posts
+                // setTimeout(() => {
+                //     window.location.reload();
+                // }, 3000);
+                // // Optionally, you can update your state or re-fetch posts
             }
         } catch (error) {
             console.error('Error deleting post:', error);
@@ -91,9 +100,10 @@ const Post = ({ post }) => {
                     position: toast.POSITION.TOP_RIGHT,
                     autoClose: 3000,
                 });
-                setTimeout(() => {
-                    window.location.reload();
-                }, 3000);
+                // setTimeout(() => {
+                //     window.location.reload();
+                // }, 3000);
+                // setIsEdited(true);
                 // Exit edit mode
                 setIsEditing(false);
             }

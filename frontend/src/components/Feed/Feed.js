@@ -21,7 +21,7 @@ const Feed = () => {
         }
 
         fetchPosts();
-    }, []); // Empty dependency array means this effect runs only once after initial render
+    }, [currentUser.posts.length]); // Empty dependency array means this effect runs only once after initial render
     return (
         <div className="feed">
             <CreatePost />

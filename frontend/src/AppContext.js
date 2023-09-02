@@ -2,6 +2,8 @@ import React, { createContext, useContext, useReducer, useEffect } from 'react';
 
 // Define your action types
 const SET_CURRENT_USER = 'SET_CURRENT_USER';
+const ADD_POST_TO_USER = 'ADD_POST_TO_USER';
+const REMOVE_POST_FROM_USER = 'REMOVE_POST_FROM_USER'; // Add this action type
 
 // Create a context
 const AppContext = createContext();
@@ -17,6 +19,23 @@ const appReducer = (state, action) => {
             // console.log('Reducer SET_CURRENT_USER:', action.payload);
             return { ...state, currentUser: action.payload };
         // Handle other action types...
+        case ADD_POST_TO_USER:
+            // Add the new post ID to the currentUser's posts array
+            const updatedPosts = [...state.currentUser.posts, action.payload];
+            const updatedUserWithPosts = { ...state.currentUser, posts: updatedPosts };
+            console.log('Reducer ADD_POST_TO_USER:', action.payload);
+            return { ...state, currentUser: updatedUserWithPosts };
+        case REMOVE_POST_FROM_USER:
+            // Remove the post ID from the currentUser's posts array
+            const updatedPostsAfterDelete = state.currentUser.posts.filter(
+                (postId) => postId !== action.payload
+            );
+            const updatedUserWithoutPost = {
+                ...state.currentUser,
+                posts: updatedPostsAfterDelete,
+            };
+            console.log('Reducer REMOVE_POST_FROM_USER:', updatedPostsAfterDelete);
+            return { ...state, currentUser: updatedUserWithoutPost };
         default:
             return state;
     }
@@ -46,4 +65,4 @@ const useAppContext = () => {
     return context;
 };
 
-export { AppProvider, useAppContext, SET_CURRENT_USER };
+export { AppProvider, useAppContext, SET_CURRENT_USER, ADD_POST_TO_USER, REMOVE_POST_FROM_USER };

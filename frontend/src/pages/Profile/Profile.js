@@ -27,7 +27,7 @@ const Profile = () => {
 
   useEffect(() => {
     // Check if userId matches profileId and set isMyProfile accordingly
-    setisMyProfile(userId === profileId);
+    setisMyProfile(currentUser._id === profileId);
     async function fetchPosts() {
       try {
         const response = await axios.get(`http://localhost:3001/api/posts/user/${profileId}`); // Replace with your actual endpoint
@@ -38,7 +38,7 @@ const Profile = () => {
     }
 
     fetchPosts();
-  }, [userId, profileId]); // Run this effect when userId or profileId changes
+  }, [profileId,currentUser.posts.length]); // Run this effect when userId or profileId changes
 
   return (
     <div className="profile-container">

@@ -100,7 +100,7 @@ const ProfileContent = ({ profileId }) => {
     };
 
     fetchUserDetails();
-  }, [userId, profileId]); // Run this effect when userId or profileId change
+  }, [userId, profileId,currentUser.posts.length,currentUser.following.length,currentUser.followers.length]); // Run this effect when userId or profileId change
 
   const duser = {
     name: 'Rajib Mondal',

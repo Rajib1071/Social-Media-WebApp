@@ -1,0 +1,32 @@
+/* ChatHeader.css */
+
+/* Style for the chat header container */
+.chat-header {
+    display: flex;
+    align-items: center;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+  }
+  
+  /* Style for the profile link */
+  .profile-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* Style for the user's avatar */
+  .profile-link .user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  /* Style for the user's username (make it bold) */
+  .profile-link .user-username {
+    font-weight: bold;
+  }
+  

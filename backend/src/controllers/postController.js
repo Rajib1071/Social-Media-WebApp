@@ -293,6 +293,9 @@ async function getFollowedAndOwnPosts(req, res) {
     // Combine both followed and own posts
     const allPosts = followedPosts.concat(ownPosts);
 
+    // Sort the combined posts by createdAt in descending order
+    allPosts.sort((a, b) => b.createdAt - a.createdAt);
+
     res.status(200).json(allPosts);
   } catch (error) {
     res.status(500).json({ error: 'Failed to retrieve posts' });

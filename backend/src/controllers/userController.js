@@ -132,7 +132,7 @@ async function getUserDetails(req, res) {
       id: user._id,
       profilePhoto: user.profilePhoto,
       followers: user.followers.length,
-      followings: user.following.length,
+      following: user.following.length,
       posts: user.posts.length,
       isFollowingUser: isFollowingUser, // Include isFollowingUser in the response
     };

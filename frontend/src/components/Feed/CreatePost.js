@@ -5,12 +5,13 @@ import './createPostStyles.css';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for styling
-import { useAppContext } from '../../AppContext';
+import { useAppContext, ADD_POST_TO_USER } from '../../AppContext';
 
 const CreatePost = () => {
     const [postContent, setPostContent] = useState('');
     const [postPhoto, setPostPhoto] = useState(null);
     const { state: { currentUser } } = useAppContext();
+    const { dispatch } = useAppContext();
     const userId = currentUser._id;
     const handlePostSubmit = async (e) => {
         e.preventDefault();
@@ -31,6 +32,13 @@ const CreatePost = () => {
             });
 
             if (response.status === 201) {
+                // console.log('response data',response.data);
+                // Extract the newly created post's ID from the response data
+                const newPostId = response.data._id;
+
+                // Update the current user's data in your context
+                dispatch({ type: 'ADD_POST_TO_USER', payload: newPostId });
+
                 // Handle success (e.g., show a success message or redirect)
                 console.log('Post created successfully');
                 setPostContent('');
@@ -40,12 +48,7 @@ const CreatePost = () => {
                     position: toast.POSITION.TOP_RIGHT,
                     autoClose: 3000, // Close after 3 seconds
                 });
-                // Reload the page after successful post
-                // window.location.reload();
-                // Reload the page after a delay of 3 seconds
-                // setTimeout(() => {
-                //     window.location.reload();
-                // }, 3000);
+
             }
         } catch (error) {
             // Handle error (e.g., show an error message)

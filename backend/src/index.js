@@ -6,7 +6,7 @@ const postRoutes = require('./routes/postRoutes');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const { startWebSocketServer } = require('./websocket/websocket');
+
 
 // Load environment variables from .env file
 dotenv.config();
