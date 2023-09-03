@@ -1,81 +1,57 @@
 import React, { useState, useEffect } from 'react';
 import ChatHeader from './ChatHeader';
-import MessageList from './MessageList';
-import MessageInput from './MessageInput';
 import axios from 'axios'; // Import Axios
+import './ChatBox.css'; // Import the CSS file
+import Message from './Message';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useAppContext } from '../../AppContext';
 
 const dummyUser = {
-    id: 1,
-    username: "exampleuser",
-    avatarUrl: "assets/person/dp1.png", // Replace with an actual avatar URL
-  };
-  const dummyMessages = [
-    {
-      id: 1,
-      text: "Hello, how are you?",
-      sender: "user1",
-      timestamp: "2023-09-02 10:30 AM",
-    },
-    {
-      id: 2,
-      text: "I'm good, thanks!",
-      sender: "user2",
-      timestamp: "2023-09-02 10:35 AM",
-    },
-    {
-      id: 3,
-      text: "What have you been up to?",
-      sender: "user1",
-      timestamp: "2023-09-02 10:40 AM",
-    },
-    {
-      id: 4,
-      text: "Just working on some projects.",
-      sender: "user2",
-      timestamp: "2023-09-02 10:45 AM",
-    },
-    {
-      id: 5,
-      text: "That sounds interesting!",
-      sender: "user1",
-      timestamp: "2023-09-02 10:50 AM",
-    },
-    {
-      id: 6,
-      text: "Yes, it's been quite busy lately.",
-      sender: "user2",
-      timestamp: "2023-09-02 10:55 AM",
-    },
-    {
-      id: 7,
-      text: "How about you?",
-      sender: "user2",
-      timestamp: "2023-09-02 11:00 AM",
-    },
-    {
-      id: 8,
-      text: "I'm working on a new project too.",
-      sender: "user1",
-      timestamp: "2023-09-02 11:05 AM",
-    },
-    {
-      id: 9,
-      text: "That's great! What's it about?",
-      sender: "user2",
-      timestamp: "2023-09-02 11:10 AM",
-    },
-    {
-      id: 10,
-      text: "It's about building a chat application!",
-      sender: "user1",
-      timestamp: "2023-09-02 11:15 AM",
-    },
-    // Add more sample messages as needed
-  ];
-  
-  
+  id: 1,
+  username: "exampleuser",
+  avatarUrl: "assets/person/dp1.png", // Replace with an actual avatar URL
+};
+
+
 function ChatBox({ selectedUser }) {
   const [messages, setMessages] = useState([]);
+  const [sendmessage, setSendMessage] = useState('');
+  const { state: { currentUser } } = useAppContext();
+  const handleSendMessage = async () => {
+    try {
+      // Check if the message is not empty
+      if (!sendmessage.trim()) {
+        return;
+      }
+
+      // Create a new message object
+      const newMessage = {
+        text: sendmessage,
+        sender: currentUser._id, // Assuming you have currentUser defined
+        conversationId: selectedUser.conversationId,
+      };
+
+      // Make a POST request to your server to send the message
+      const response = await axios.post('http://localhost:3001/api/message/send', newMessage);
+      // Check the response status code
+      // Check the response status code
+      if (response.status === 201) {
+        console.log('Message sent successfully');
+        toast.success('Send successfully', {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 3000, // Close after 3 seconds
+        });
+      } else {
+        console.error('Failed to send message');
+      }
+
+      // Clear the message input field after sending
+      setSendMessage('');
+    } catch (error) {
+      console.error('Error sending message:', error);
+    }
+  };
 
   useEffect(() => {
     if (!selectedUser.conversationId) {
@@ -95,8 +71,22 @@ function ChatBox({ selectedUser }) {
   return (
     <div className="chat-box">
       <ChatHeader user={selectedUser} />
-      <MessageList data={{ messages, username: selectedUser.userName }} />
-      <MessageInput conversationId={selectedUser.conversationId}/>
+      <div className="message-list">
+
+        {messages.map((message) => (
+          <Message key={message._id} message={message} username={selectedUser.userName} />
+        ))}
+      </div>
+      <div className="message-input">
+        <ToastContainer /> {/* Place the ToastContainer here */}
+        <input
+          type="text"
+          placeholder="Type your message..."
+          value={sendmessage}
+          onChange={(e) => setSendMessage(e.target.value)}
+        />
+        <button onClick={handleSendMessage}>Send</button>
+      </div>
     </div>
   );
 }

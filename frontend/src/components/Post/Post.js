@@ -104,6 +104,8 @@ const Post = ({ post }) => {
                 //     window.location.reload();
                 // }, 3000);
                 // setIsEdited(true);
+                
+                post.content=response.data.content;
                 // Exit edit mode
                 setIsEditing(false);
             }

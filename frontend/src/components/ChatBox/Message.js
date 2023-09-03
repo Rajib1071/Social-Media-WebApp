@@ -1,7 +1,9 @@
 import React from 'react';
 import { useAppContext } from '../../AppContext';
+import { format } from "timeago.js";
+
 function Message({ message, username }) {
-  const { text, sender, timestamp } = message;
+  const { text, sender, createdAt } = message;
   const { state: { currentUser } } = useAppContext();
 
   // Determine the sender's name based on the current user and message sender
@@ -12,9 +14,11 @@ function Message({ message, username }) {
       
       {sender && <div className="sender-name">{senderName}</div>}
       <div className="message-text">{text}</div>
-      {timestamp && (
-        <div className="message-timestamp">
-          {new Date(timestamp).toLocaleTimeString()}
+      {createdAt && (
+        <div className="message-createdAt">
+          {/* {format(createdAt)} */}
+          {new Date(createdAt).toLocaleTimeString()}
+          {/* {new Date(createdAt).toLocaleString()} */}
         </div>
       )}
     </div>

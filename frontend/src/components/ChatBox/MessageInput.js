@@ -5,19 +5,19 @@ import axios from 'axios'; // Import Axios
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 function MessageInput({ conversationId }) {
-  const [message, setMessage] = useState('');
+  const [sendmessage, setSendMessage] = useState('');
   const { state: { currentUser } } = useAppContext();
 
   const handleSendMessage = async () => {
     try {
       // Check if the message is not empty
-      if (!message.trim()) {
+      if (!sendmessage.trim()) {
         return;
       }
 
       // Create a new message object
       const newMessage = {
-        text: message,
+        text: sendmessage,
         sender: currentUser._id, // Assuming you have currentUser defined
         conversationId,
       };
@@ -37,7 +37,7 @@ function MessageInput({ conversationId }) {
       }
 
       // Clear the message input field after sending
-      setMessage('');
+      setSendMessage('');
     } catch (error) {
       console.error('Error sending message:', error);
     }
@@ -50,8 +50,8 @@ function MessageInput({ conversationId }) {
       <input
         type="text"
         placeholder="Type your message..."
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
+        value={sendmessage}
+        onChange={(e) => setSendMessage(e.target.value)}
       />
       <button onClick={handleSendMessage}>Send</button>
     </div>
