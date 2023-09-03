@@ -14,4 +14,79 @@
     display: flex;
     flex-grow: 1;
   }
- 
+ /* ChatLeftBar.css */
+
+/* Style for the chat Left bar */
+.chat-Left-bar {
+  background-color: #eee;
+  /* background-color: #fff; */
+  padding: 10px;
+}
+
+/* Style for the list of chat users */
+.chat-Left-bar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Style for each user in the list */
+.chat-Left-bar li {
+  margin-bottom: 10px;
+}
+
+/* Style for the user's avatar */
+.chat-Left-bar .user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-Left: 10px;
+}
+
+
+.profile-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.profile-link:hover {
+  text-decoration: underline;
+  /* Add an underline on hover (optional) */
+}
+
+.user-username {
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-right: 20px;
+
+  position: relative;
+}
+
+.search-icon {
+  color: #888;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Style for the search input */
+.search-input {
+  flex-grow: 1;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+.selected-user {
+  background-color: #fff;  /* Change this color to your desired highlight color */
+  /* color: #fff; Text color for selected user */
+}

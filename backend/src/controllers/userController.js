@@ -108,7 +108,7 @@ async function loginUser(req, res) {
   }
 }
 
-// Controller function to get user details
+
 // Controller function to get user details
 async function getUserDetails(req, res) {
   const { userId } = req.params;

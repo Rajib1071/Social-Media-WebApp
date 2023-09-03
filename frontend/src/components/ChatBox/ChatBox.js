@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ChatHeader from './ChatHeader';
 import MessageList from './MessageList';
 import MessageInput from './MessageInput';
-import './ChatBox.css'; // Import the CSS file
+import axios from 'axios'; // Import Axios
+
 const dummyUser = {
     id: 1,
     username: "exampleuser",
@@ -73,11 +74,28 @@ const dummyUser = {
   ];
   
   
-function ChatBox() {
+function ChatBox({ conversationId }) {
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    if (!conversationId) {
+      // If there's no conversation selected, don't fetch messages
+      return;
+    }
+
+    // Fetch messages by conversation ID
+    axios.get(`http://localhost:3001/api/message/conversation/${conversationId}`)
+      .then((response) => {
+        setMessages(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching messages:', error);
+      });
+  }, [conversationId]);
   return (
     <div className="chat-box">
       <ChatHeader user={dummyUser} />
-      <MessageList messages={dummyMessages} />
+      <MessageList messages={messages} />
       <MessageInput />
     </div>
   );

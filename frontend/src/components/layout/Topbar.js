@@ -21,6 +21,7 @@ const TopBar = () => {
       const blob = new Blob([arrayBufferView], { type: 'image/jpeg' });// Create a Blob from the Uint8Array
       const imageUrl = URL.createObjectURL(blob);// Create a temporary object URL for the Blob
       setImageSrc(imageUrl);// Set the image source URL to the temporary URL
+      console.log("imageUrl",imageUrl)
   }
   }, [currentUser]);
   return (
