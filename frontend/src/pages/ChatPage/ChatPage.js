@@ -9,11 +9,15 @@ import { useAppContext } from '../../AppContext';
 
 function ChatPage() {
   const { state: { currentUser } } = useAppContext();
-  const [selectedUser, setSelectedUser] = useState(null);
+  // const [selectedUser, setSelectedUser] = useState(null);
   const [conversations, setConversations] = useState([]);
   const [users, setUsers] = useState([]);
-  const [selectedConversationId, setSelectedConversationId] = useState(null); // Store selected conversation ID
-
+  const [selectedUser, setSelectedUser] = useState({
+    id: null,
+    imageUrl: null,
+    conversationId: null,
+    userName: null,
+  });
 
 
   useEffect(() => {
@@ -66,17 +70,26 @@ function ChatPage() {
 
 
 
-  const handleUserClick = (userId) => {
-    setSelectedUser(userId);
-
+  const handleUserClick = (userDetail) => {
     // Find the conversation ID where the clicked user's ID exists in participants
     const conversationWithUser = conversations.find((conversation) =>
-      conversation.participants.includes(userId)
+      conversation.participants.includes(userDetail.id)
     );
 
+    // Create a new object to update selectedUser
+    const updatedUser = {
+      id: userDetail.id,
+      imageUrl: userDetail.imageUrl,
+      userName: userDetail.username,
+    };
+
+    // Conditionally set the conversationId property if it exists
     if (conversationWithUser) {
-      setSelectedConversationId(conversationWithUser._id);
+      updatedUser.conversationId = conversationWithUser._id;
     }
+
+    // Update the selectedUser state
+    setSelectedUser(updatedUser);
   };
   return (
     <div className="chat-page">
@@ -96,11 +109,11 @@ function ChatPage() {
                 <li
                   key={userDetail.id}
                   className={selectedUser === userDetail.id ? "selected-user" : ""}
-                  onClick={() => handleUserClick(userDetail.id)}
+                  onClick={() => handleUserClick(userDetail)}
                 >
-                  
+
                   <div className="profile-link">
-                    <Avatar alt={ userDetail.username} src={userDetail.imageUrl} />
+                    <Avatar alt={userDetail.username} src={userDetail.imageUrl} />
                     {/* <img src={imageUrl} alt={userDetail.username} className="user-avatar" /> */}
                     <span className="user-username">{userDetail.username}</span>
                   </div>
@@ -109,7 +122,7 @@ function ChatPage() {
             })}
           </ul>
         </div>
-        <ChatBox conversationId={selectedConversationId} /> {/* Pass conversationId */}
+        <ChatBox selectedUser={selectedUser} /> {/* Pass conversationId */}
       </div>
     </div>
   );

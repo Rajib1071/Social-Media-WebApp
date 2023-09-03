@@ -74,29 +74,29 @@ const dummyUser = {
   ];
   
   
-function ChatBox({ conversationId }) {
+function ChatBox({ selectedUser }) {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    if (!conversationId) {
+    if (!selectedUser.conversationId) {
       // If there's no conversation selected, don't fetch messages
       return;
     }
 
     // Fetch messages by conversation ID
-    axios.get(`http://localhost:3001/api/message/conversation/${conversationId}`)
+    axios.get(`http://localhost:3001/api/message/conversation/${selectedUser.conversationId}`)
       .then((response) => {
         setMessages(response.data);
       })
       .catch((error) => {
         console.error('Error fetching messages:', error);
       });
-  }, [conversationId]);
+  }, [selectedUser.conversationId]);
   return (
     <div className="chat-box">
-      <ChatHeader user={dummyUser} />
-      <MessageList messages={messages} />
-      <MessageInput />
+      <ChatHeader user={selectedUser} />
+      <MessageList data={{ messages, username: selectedUser.userName }} />
+      <MessageInput conversationId={selectedUser.conversationId}/>
     </div>
   );
 }

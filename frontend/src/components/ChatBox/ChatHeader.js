@@ -7,8 +7,8 @@ function ChatHeader({ user }) {
     return (
         <div className="chat-header">
             <Link to={`/profile`} className="profile-link">
-                <Avatar alt={user.username} src={user.avatarUrl} className="user-avatar" />
-                <span className="user-username">{user.username}</span>
+                <Avatar alt={user.userName} src={user.imageUrl} className="user-avatar" />
+                <span className="user-username">{user.userName}</span>
             </Link>
         </div>
     );
