@@ -68,6 +68,7 @@ const ProfileContent = ({ profileId }) => {
         // Skip fetching if userId and profileId are equal
         if (userId === profileId) {
           setUser({
+            bio: currentUser && currentUser.bio,
             username: currentUser && currentUser.username,
             following: currentUser && currentUser.following.length,
             posts: currentUser && currentUser.posts.length,

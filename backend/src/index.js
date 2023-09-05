@@ -59,3 +59,5 @@ app.use('/api/conversation', conversationRoutes);
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+// "start": "nodemon src/index.js",
