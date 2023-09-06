@@ -8,7 +8,15 @@ const conversationRoutes = require('./routes/conversationRoutes');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const fs = require('fs');
 
+
+const uploadDir = 'uploads'; // Define the directory name
+
+// Create the directory if it doesn't exist
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir);
+}
 
 // Load environment variables from .env file
 dotenv.config();
