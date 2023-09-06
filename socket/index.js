@@ -3,11 +3,7 @@ require('dotenv').config(); // Load environment variables from .env file
 
 const io = require("socket.io")(process.env.PORT, {
     cors: {
-        origin: process.env.origin,
-        methods: ["GET", "POST"],
-        credentials: true,
-        allowedHeaders: ["Authorization", "Content-Type"],
-        exposedHeaders: ["Authorization"],
+        origin: "https://comfy-alfajores-16bf91.netlify.app",
     },
 });
 
