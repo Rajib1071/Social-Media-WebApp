@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './registerStyles.css';
-import axios from 'axios';
+import api from '../../api';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for styling
 const Register = () => {
@@ -13,7 +13,7 @@ const Register = () => {
     e.preventDefault();
     // Add your registration logic here
     try {
-      const response = await axios.post('http://localhost:3001/api/users/register', {
+      const response = await api.post('/users/register', {
         username,
         email,
         password,

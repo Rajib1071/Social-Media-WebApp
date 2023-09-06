@@ -3,6 +3,7 @@ import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import Input from '@mui/material/Input';
 import './createPostStyles.css';
 import axios from 'axios';
+import api from '../../api'; // Adjust the import path based on your project structure
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for styling
 import { useAppContext, ADD_POST_TO_USER } from '../../AppContext';
@@ -27,7 +28,7 @@ const CreatePost = () => {
         }
 
         try {
-            const response = await axios.post('http://localhost:3001/api/posts', formData, {
+            const response = await api.post('/posts', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
 

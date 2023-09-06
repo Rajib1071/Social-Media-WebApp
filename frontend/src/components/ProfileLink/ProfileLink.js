@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
-import axios from 'axios';
+import api from '../../api';
 import './ProfileLinkStyles.css';
 const ProfileLink = ({ authorId }) => {
   const [author, setAuthor] = useState(null);
@@ -9,7 +9,7 @@ const ProfileLink = ({ authorId }) => {
   useEffect(() => {
     async function fetchAuthorData() {
       try {
-        const response = await axios.get(`http://localhost:3001/api/users/details/${authorId}`);
+        const response = await api.get(`/users/details/${authorId}`);
         if (response.status === 200) {
           const authorData = response.data;
           if (authorData.profilePhoto && authorData.profilePhoto.data) {

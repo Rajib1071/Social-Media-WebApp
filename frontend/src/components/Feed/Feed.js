@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import CreatePost from './CreatePost'; // Import the CreatePost component
 import Post from '../Post/Post'; // Import the Post component
 import './feedStyles.css'; // Import feed styles
-import axios from 'axios';
+
+import api from '../../api';
 import { useAppContext } from '../../AppContext';
 
 const Feed = () => {
@@ -13,7 +14,7 @@ const Feed = () => {
     useEffect(() => {
         async function fetchPosts() {
             try {
-                const response = await axios.get(`http://localhost:3001/api/posts/user-followers/${userId}`); // Replace with your actual endpoint
+                const response = await api.get(`/posts/user-followers/${userId}`); // Replace with your actual endpoint
                 setPosts(response.data);
             } catch (error) {
                 console.error('Error fetching posts:', error);

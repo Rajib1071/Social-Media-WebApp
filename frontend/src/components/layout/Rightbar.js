@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './RightbarStyles.css'; // Import right bar styles
 import ProfileLink from '../ProfileLink/ProfileLink';
-import axios from 'axios';
+import api from '../../api';
 import { useAppContext } from '../../AppContext';
 
 const RightBar = () => {
@@ -9,7 +9,7 @@ const RightBar = () => {
   const { state: { currentUser } } = useAppContext();
   useEffect(() => {
     // Make an HTTP GET request to fetch the latest user IDs
-    axios.get('http://localhost:3001/api/users/latest-users')
+    api.get('/users/latest-users')
       .then(response => {
         // Extract the user IDs from the response data
         const ids = response.data;

@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import Avatar from '@mui/material/Avatar';
 import SearchIcon from '@mui/icons-material/Search';
 import Topbar from '../../components/layout/Topbar';
-import axios from 'axios'; // Import Axios
+
+import api from '../../api';
 import './ChatBox.css'; // Import the CSS file
 import Message from '../../components/ChatBox/Message';
 import './ChatPage.css';
@@ -93,7 +94,7 @@ function ChatPage() {
       };
 
       // Make a POST request to your server to send the message
-      const response = await axios.post('http://localhost:3001/api/message/send', newMessage);
+      const response = await api.post('/message/send', newMessage);
 
       // const receiverId = selectedUser.id; // Receiver's ID
 
@@ -122,7 +123,7 @@ function ChatPage() {
     }
 
     // Fetch messages by conversation ID
-    axios.get(`http://localhost:3001/api/message/conversation/${selectedUser.current.conversationId}`)
+    api.get(`/message/conversation/${selectedUser.current.conversationId}`)
       .then((response) => {
         setMessages(response.data);
       })
@@ -132,7 +133,7 @@ function ChatPage() {
   }, [selectedUser.current.conversationId]);
   useEffect(() => {
     // Fetch conversations by the current user's ID
-    axios.get(`http://localhost:3001/api/conversation/user/${currentUser._id}`)
+    api.get(`/conversation/user/${currentUser._id}`)
       .then((response) => {
         setConversations(response.data);
       })
@@ -155,7 +156,7 @@ function ChatPage() {
 
       const userDetailPromises = participantIds.map(async (userId) => {
         try {
-          const response = await axios.get(`http://localhost:3001/api/users/details/${userId}?currentUserId=${currentUser._id}`);
+          const response = await api.get(`/users/details/${userId}?currentUserId=${currentUser._id}`);
           if (response.data.profilePhoto && response.data.profilePhoto.data) {
             const arrayBufferView = new Uint8Array(response.data.profilePhoto.data.data);
             const blob = new Blob([arrayBufferView], { type: 'image/jpeg' });

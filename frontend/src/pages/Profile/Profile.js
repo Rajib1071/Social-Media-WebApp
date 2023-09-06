@@ -6,7 +6,7 @@ import Rightbar from '../../components/layout/Rightbar';
 import ProfileContent from './ProfileContent'; // Create this component
 import EditProfile from './EditProfile';
 import Post from '../../components/Post/Post';
-import axios from 'axios';
+import api from '../../api';
 import { useParams } from 'react-router-dom';
 import { useAppContext } from '../../AppContext';
 
@@ -30,7 +30,7 @@ const Profile = () => {
     setisMyProfile(currentUser._id === profileId);
     async function fetchPosts() {
       try {
-        const response = await axios.get(`http://localhost:3001/api/posts/user/${profileId}`); // Replace with your actual endpoint
+        const response = await api.get(`/posts/user/${profileId}`); // Replace with your actual endpoint
         setPosts(response.data);
       } catch (error) {
         console.error('Error fetching posts:', error);

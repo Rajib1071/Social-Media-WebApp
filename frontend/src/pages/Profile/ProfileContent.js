@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
 import './profileContentStyles.css';
-import axios from 'axios';
+import api from '../../api';
 import { useAppContext } from '../../AppContext';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,7 +17,7 @@ const ProfileContent = ({ profileId }) => {
 
   //     const fetchUserDetails = async () => {
   //         try {
-  //             const response = await axios.get(`http://localhost:3001/api/users/details/${profileId}`);
+  //             const response = await api.get(`/users/details/${profileId}`);
 
   //             if (response.status === 200) {
   //                 setUser(response.data);
@@ -39,7 +39,7 @@ const ProfileContent = ({ profileId }) => {
   const handleFollowUser = async () => {
     try {
 
-      const response = await axios.post('http://localhost:3001/api/users/follow', {
+      const response = await api.post('/users/follow', {
         userId: currentUser._id, // The current user's ID
         followId: profileId, // The ID of the user being viewed
       });
@@ -83,7 +83,7 @@ const ProfileContent = ({ profileId }) => {
           return;
         }
 
-        const response = await axios.get(`http://localhost:3001/api/users/details/${profileId}?currentUserId=${currentUser._id}`);
+        const response = await api.get(`/users/details/${profileId}?currentUserId=${currentUser._id}`);
 
         if (response.status === 200) {
           setUser(response.data);

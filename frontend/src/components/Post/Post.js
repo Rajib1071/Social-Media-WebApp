@@ -8,7 +8,8 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import './postStyles.css';
-import axios from 'axios';
+
+import api from '../../api';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for styling
 import { useAppContext, REMOVE_POST_FROM_USER } from '../../AppContext';
@@ -46,7 +47,7 @@ const Post = ({ post }) => {
         setAnchorEl(null); // Close the menu
 
         try {
-            const response = await axios.delete('http://localhost:3001/api/posts', {
+            const response = await api.delete('/posts', {
                 data: {
                     userId: currentUser._id, // Replace with the actual user ID
                     postId: post._id,
@@ -89,7 +90,7 @@ const Post = ({ post }) => {
     const handleSaveEdit = async () => {
         // Implement your save logic here
         try {
-            const response = await axios.put(`http://localhost:3001/api/posts`, {
+            const response = await api.put(`/posts`, {
                 postId: post._id,
                 title: editedTitle,
                 content: editedContent,
@@ -129,7 +130,7 @@ const Post = ({ post }) => {
 
     const handleLike = async () => {
         try {
-            const response = await axios.post('http://localhost:3001/api/posts/like', {
+            const response = await api.post('/posts/like', {
                 postId: post._id, // Use the post's _id field
                 userId: currentUser._id, // Replace with the actual userId of the current user
             });

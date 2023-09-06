@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './editProfileStyles.css'; // Import the CSS file
-import axios from 'axios';
+import api from '../../api';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for styling
 import { useAppContext } from '../../AppContext';
@@ -24,7 +24,7 @@ const EditProfile = () => {
       formData.append('profilePhoto', profilePhoto); // Append the image file to the FormData
     }
     try {
-      const response = await axios.put('http://localhost:3001/api/users/profile', formData, {
+      const response = await api.put('/users/profile', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       if (response.status === 200) {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link,useNavigate } from 'react-router-dom';
 import './loginStyles.css';
-import axios from 'axios';
+import api from '../../api';
 import { useAppContext, SET_CURRENT_USER  } from '../../AppContext';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,7 +17,7 @@ const Login = () => {
     // Add your login logic here
     // console.log('Login clicked:', email, password);
      try {
-      const response = await axios.post('http://localhost:3001/api/users/login', {
+      const response = await api.post('/users/login', {
 
         email,
         password,
