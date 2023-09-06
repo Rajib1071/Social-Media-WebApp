@@ -3,7 +3,7 @@ node_modules/
 
 
 # Ignore build or dist folders
-
+build/
 dist/
 
 # Ignore environment variables or sensitive information
