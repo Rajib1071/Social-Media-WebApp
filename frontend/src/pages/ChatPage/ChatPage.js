@@ -48,7 +48,7 @@ function ChatPage() {
   console.log('Component rendered');
 
   useEffect(() => {
-    socket.current = io("ws://localhost:8900");
+    socket.current = io("https://instapostsocketserver.onrender.com");
     socket.current.on("getMessage", (data) => {
 
       if (data.sender === selectedUser.current.id) {
