@@ -8,8 +8,8 @@ This is a social media web application built using React, Node.js, WebSocket, an
 - User Profiles and Personalization
 - News Feed and Timeline
 - Post Creation and Interaction
-- Search and Discovery
-- Notifications and Real-time Updates
+- Search and Discovery(not done yet)
+- Notifications and Real-time Updates(not done yet)
 
 ## Technologies Used
 
