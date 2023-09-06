@@ -53,7 +53,7 @@ const AppProvider = ({ children }) => {
     const [state, dispatch] = useReducer(appReducer, initialState);
     // Create and initialize the CURRENT_socket instance when the provider is mounted
     useEffect(() => {
-        const currentsocket = io("https://instapostCURRENT_socketserver.onrender.com");
+        const currentsocket = io("https://instapostsocketserver.onrender.com");
 
         // Dispatch an action to set the CURRENT_socket instance in the state
         dispatch({ type: SET_CURRENT_SOCKET, payload: currentsocket });
