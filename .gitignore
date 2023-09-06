@@ -2,7 +2,6 @@
 node_modules/
 
 
-api.js
 # Ignore build or dist folders
 build/
 dist/
