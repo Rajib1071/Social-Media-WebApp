@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
-
+import io from 'socket.io-client';
 // Define your action types
 const SET_CURRENT_USER = 'SET_CURRENT_USER';
 const ADD_POST_TO_USER = 'ADD_POST_TO_USER';
