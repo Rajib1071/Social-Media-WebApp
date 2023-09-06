@@ -27,7 +27,7 @@ function ChatPage() {
   const [messages, setMessages] = useState([]);
   const [sendmessage, setSendMessage] = useState('');
   const [receivedMessage, setReceivedMessage] = useState(null);
-  const { state: { currentUser } } = useAppContext();
+  const { state: { currentUser,currentsocket } } = useAppContext();
   const [conversations, setConversations] = useState([]);
   const [users, setUsers] = useState([]);
   const [sid, setsid] = useState();
@@ -46,9 +46,12 @@ function ChatPage() {
 
 
   console.log('Component rendered');
+  useEffect(() => {
+    socket.current = currentsocket; // Assign the socket from state to the ref
+  }, [currentsocket]);
 
   useEffect(() => {
-    socket.current = io("https://instapostsocketserver.onrender.com");
+    // socket.current = io("https://instapostsocketserver.onrender.com");
     socket.current.on("getMessage", (data) => {
 
       if (data.sender === selectedUser.current.id) {

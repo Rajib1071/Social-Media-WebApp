@@ -4,6 +4,8 @@ import React, { createContext, useContext, useReducer, useEffect } from 'react';
 const SET_CURRENT_USER = 'SET_CURRENT_USER';
 const ADD_POST_TO_USER = 'ADD_POST_TO_USER';
 const REMOVE_POST_FROM_USER = 'REMOVE_POST_FROM_USER'; // Add this action type
+// Add this action type
+const SET_CURRENT_SOCKET = 'SET_CURRENT_SOCKET';
 
 // Create a context
 const AppContext = createContext();
@@ -11,10 +13,14 @@ const AppContext = createContext();
 const initialState = {
     currentUser: undefined, // Initialize as undefined
     // Other state properties...
+    currentsocket: null, // Initialize with null or any default value
 };
 
 const appReducer = (state, action) => {
     switch (action.type) {
+        // Add a new case for SET_CURRENT_SOCKET
+        case SET_CURRENT_SOCKET:
+            return { ...state, currentsocket: action.payload };
         case SET_CURRENT_USER:
             // console.log('Reducer SET_CURRENT_USER:', action.payload);
             return { ...state, currentUser: action.payload };
@@ -45,6 +51,18 @@ const appReducer = (state, action) => {
 
 const AppProvider = ({ children }) => {
     const [state, dispatch] = useReducer(appReducer, initialState);
+    // Create and initialize the CURRENT_socket instance when the provider is mounted
+    useEffect(() => {
+        const currentsocket = io("https://instapostCURRENT_socketserver.onrender.com");
+
+        // Dispatch an action to set the CURRENT_socket instance in the state
+        dispatch({ type: SET_CURRENT_SOCKET, payload: currentsocket });
+
+        // Cleanup function to disconnect the CURRENT_socket when the provider is unmounted
+        return () => {
+            currentsocket.disconnect();
+        };
+    }, []);
     // Log the currentUser whenever it changes
     useEffect(() => {
         console.log('currentUser in AppProvider:', state.currentUser);
@@ -65,4 +83,4 @@ const useAppContext = () => {
     return context;
 };
 
-export { AppProvider, useAppContext, SET_CURRENT_USER, ADD_POST_TO_USER, REMOVE_POST_FROM_USER };
+export { AppProvider, useAppContext, SET_CURRENT_USER, ADD_POST_TO_USER, REMOVE_POST_FROM_USER,SET_CURRENT_SOCKET };
