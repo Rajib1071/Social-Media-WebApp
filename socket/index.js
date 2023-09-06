@@ -6,6 +6,8 @@ const io = require("socket.io")(process.env.PORT, {
         origin: process.env.origin,
         methods: ["GET", "POST"],
         credentials: true,
+        allowedHeaders: ["Authorization", "Content-Type"],
+        exposedHeaders: ["Authorization"],
     },
 });
 
